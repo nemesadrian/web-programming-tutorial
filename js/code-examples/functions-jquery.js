@@ -36,23 +36,21 @@ $("#top-menu a").click(function () {
     $("#breadcrumb").text(this.innerHTML + " : " + this.title);
 });
 
+function showContacts(contacts) {
 
+    var contactsHTML = '';
 
-
-
-
-
-// var contactItem = "<td>Adrian</td><td>0751823318</td>";
-// $('#contacts-list tbody').html(contactItem);
-
-var contactsHTML = '';
-var contacts = [
-    ['Matei Nicolae', '07560000000'],
-    ['Matei Nicoleta', '0777654323'],
-    ['Nemes Adrian', '075xxxxxxxx']
-];
-
-for(var i=0; i< contacts.length; i++) {
-    contactsHTML += '<tr><td>' + contacts[i][0] + '</td><td>' + contacts[i][1] + '</td><td> </td></tr>';
+    for(var i=0; i< contacts.length; i++) {
+        contactsHTML += '<tr><td>' + contacts[i][0] + '</td><td>' + contacts[i][1] + '</td><td> </td></tr>';
+    }
+    $('#contacts-list tbody').html(contactsHTML);
 }
-$('#contacts-list tbody').html(contactsHTML);
+
+
+
+$.ajax({
+    url: 'js/mocks/load-contacts.json'
+}).done(function (response) {
+    console.debug('address have been loaded:', response);
+    showContacts(response);
+});
