@@ -10,29 +10,49 @@ $('#hide-info').click(function () {
 });
 
 // collapse/expand all widgets
-$(".widget .header").click(function () {
-    var widget = $(this).parent();
-    if (widget.hasClass('collapsed')) {
-        widget.removeClass('collapsed');
-    } else {
-        widget.addClass('collapsed');
-    }
-});
-
-// close widget with animation
 //$(".widget .header").click(function () {
 //    var widget = $(this).parent();
-//    widget.find('.content').animate({
-//        height: "toggle",
-//        opacity: "toggle"
-//    }, {
-//        duration: 400
-//    });
-//    widget.toggleClass('x-collapsed');
+//    if (widget.hasClass('collapsed')) {
+//        widget.removeClass('collapsed');
+//    } else {
+//        widget.addClass('collapsed');
+//    }
 //});
+
+// close widget with animation
+$(".widget .header").click(function () {
+    var widget = $(this).parent();
+    widget.find('.content').animate({
+        height: "toggle",
+        opacity: "toggle"
+    }, {
+        duration: 400
+    });
+    widget.toggleClass('x-collapsed');
+});
 
 // actions for top links
 $("#top-menu a").click(function () {
     $("#breadcrumb").text(this.innerHTML + " : " + this.title);
 });
 
+
+
+
+
+
+
+// var contactItem = "<td>Adrian</td><td>0751823318</td>";
+// $('#contacts-list tbody').html(contactItem);
+
+var contactsHTML = '';
+var contacts = [
+    ['Matei Nicolae', '07560000000'],
+    ['Matei Nicoleta', '0777654323'],
+    ['Nemes Adrian', '075xxxxxxxx']
+];
+
+for(var i=0; i< contacts.length; i++) {
+    contactsHTML += '<tr><td>' + contacts[i][0] + '</td><td>' + contacts[i][1] + '</td><td> </td></tr>';
+}
+$('#contacts-list tbody').html(contactsHTML);
